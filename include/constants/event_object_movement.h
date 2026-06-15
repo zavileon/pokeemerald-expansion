@@ -385,4 +385,13 @@ enum CopyMovement
 	COPY_MOVE_WALK_COLLIDE_SLOW,
 };
 
+//JTP
+enum MorphType
+{
+	INSTANT_MORPH,
+	MOSAIC_MORPH,
+	SPIN_MORPH
+};
+//JTP end
+
 #endif // GUARD_CONSTANTS_EVENT_OBJECT_MOVEMENT_H

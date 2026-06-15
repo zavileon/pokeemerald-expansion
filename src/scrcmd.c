@@ -3425,3 +3425,135 @@ bool8 ScrCmd_getbraillestringwidth(struct ScriptContext * ctx)
     gSpecialVar_0x8004 = GetStringWidth(FONT_BRAILLE, msg, -1);
     return FALSE;
 }
+
+//JTP
+
+static u16 GetMonGraphicsId(struct Pokemon *mon)
+{
+    u32 species = GetMonData(mon, MON_DATA_SPECIES_OR_EGG);
+    if (species == SPECIES_NONE || species == SPECIES_EGG)
+        return OBJ_EVENT_MON;
+    u16 graphicsId = species | OBJ_EVENT_MON;
+    if (GetMonData(mon, MON_DATA_IS_SHINY))
+        graphicsId |= OBJ_EVENT_MON_SHINY;
+    if (GetMonGender(mon))
+        graphicsId |= OBJ_EVENT_MON_FEMALE;
+    return graphicsId;
+}
+
+void Script_SetVar_MonCanLearnMoveGfx(struct ScriptContext *ctx)
+{
+    u16 var = ScriptReadHalfword(ctx);
+    u16 move = ScriptReadHalfword(ctx);
+
+    u16 graphicsId = OBJ_EVENT_MON;
+    for (u32 i = 0; i < gPartiesCount[B_TRAINER_PLAYER]; i++)
+    {
+        u32 species = GetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_SPECIES_OR_EGG);
+        if (CanLearnTeachableMove(species, move))
+        {
+            graphicsId = GetMonGraphicsId(&gParties[B_TRAINER_PLAYER][i]);
+            break;
+        }
+    }
+    VarSet(var, graphicsId);
+}
+
+void Script_SetVar_MonKnowsMoveGfx(struct ScriptContext *ctx)
+{
+    u16 var = ScriptReadHalfword(ctx);
+    u16 move = ScriptReadHalfword(ctx);
+
+    u16 graphicsId = OBJ_EVENT_MON;
+    for (u32 i = 0; i < gPartiesCount[B_TRAINER_PLAYER]; i++)
+    {
+        u32 species = GetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_SPECIES_OR_EGG);
+        if (species == SPECIES_NONE || species == SPECIES_EGG)
+            continue;
+        if (MonKnowsMove(&gParties[B_TRAINER_PLAYER][i], move))
+        {
+            graphicsId = GetMonGraphicsId(&gParties[B_TRAINER_PLAYER][i]);
+            break;
+        }
+    }
+    VarSet(var, graphicsId);
+}
+
+void Script_SetVar_PartyMonGfx(struct ScriptContext *ctx)
+{
+    u16 var = ScriptReadHalfword(ctx);
+    u8 partyId = ScriptReadByte(ctx);
+
+    u16 graphicsId = OBJ_EVENT_MON;
+    if (partyId < PARTY_SIZE)
+    {
+        graphicsId = GetMonGraphicsId(&gParties[B_TRAINER_PLAYER][partyId]);
+    }
+    else
+    {
+        u32 tmpGfxIds[PARTY_SIZE];
+        u32 validMonsCount = 0;
+        for (u32 i = 0; i < gPartiesCount[B_TRAINER_PLAYER]; i++)
+        {
+            u32 species = GetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_SPECIES_OR_EGG);
+            if (species == SPECIES_NONE || species == SPECIES_EGG)
+                continue;
+            tmpGfxIds[validMonsCount++] = GetMonGraphicsId(&gParties[B_TRAINER_PLAYER][i]);
+        }
+        if (validMonsCount > 0)
+            graphicsId = tmpGfxIds[RandomUniform(RNG_NONE, 0, validMonsCount - 1)];
+    }
+
+    VarSet(var, graphicsId);
+}
+
+//JTP end
+
+//Pokevial
+bool8 ScrCmd_pokevial(struct ScriptContext *ctx)
+{
+    u8 mode = ScriptReadByte(ctx);
+    u8 parameter = ScriptReadByte(ctx);
+    u8 amount = ScriptReadByte(ctx);
+
+    switch (mode) {
+        case VIAL_GET:
+            switch (parameter) {
+                case VIAL_SIZE:
+                    PokevialGetSize();
+                    break;
+                case VIAL_DOSE:
+                    PokevialGetDose();
+                    break;
+            }
+            break;
+
+        case VIAL_UP:
+            switch (parameter) {
+                case VIAL_SIZE:
+                    PokevialSizeUp(amount);
+                    break;
+                case VIAL_DOSE:
+                    PokevialDoseUp(amount);
+                    break;
+            }
+            break;
+
+        case VIAL_DOWN:
+            switch (parameter) {
+                case VIAL_SIZE:
+                    PokevialSizeDown(amount);
+                    break;
+                case VIAL_DOSE:
+                    PokevialDoseDown(amount);
+                    break;
+            }
+            break;
+
+        case VIAL_REFILL:
+            PokevialRefill();
+            break;
+    }
+    return TRUE;
+}
+//Pokevial end

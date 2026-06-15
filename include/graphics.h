@@ -1785,7 +1785,7 @@ extern const u32 gItemIcon_Pokevial8[];
 extern const u32 gItemIcon_Pokevial9[];
 extern const u32 gItemIcon_Pokevial[];
 
-extern const u32 gItemIconPalette_Pokevial[];
+extern const u16 gItemIconPalette_Pokevial[];
 
 //Pokevial end
 

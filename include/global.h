@@ -1094,6 +1094,16 @@ struct Bag
     struct ItemSlot berries[BAG_BERRIES_COUNT];
 };
 
+//Pokevial 
+
+struct Pokevial
+{
+    u8 Size : 4;
+    u8 Dose : 4;
+};
+
+//Pokevial end
+
 struct SaveBlock1
 {
     /*0x00*/ struct Coords16 pos;
@@ -1213,6 +1223,7 @@ struct SaveBlock1
     struct DaycareMon route5DayCareMon;
 #endif
     // sizeof: 0x3???
+    struct Pokevial pokevial;
 };
 
 extern struct SaveBlock1 *gSaveBlock1Ptr;

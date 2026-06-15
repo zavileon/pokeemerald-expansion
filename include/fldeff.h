@@ -57,4 +57,10 @@ bool8 FldEff_Defog(void);
 
 void Task_EnterCaveTransition2(u8 taskId);
 
+//JTP
+// minifly
+bool8 FldEff_JumpOnBird(void);
+bool8 FldEff_LeaveBird(void);
+//JTP end
+
 #endif // GUARD_FLDEFF_H

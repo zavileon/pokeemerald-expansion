@@ -3111,9 +3111,19 @@ static void ObjectEventSetGraphics(struct ObjectEvent *objectEvent, const struct
 {
     struct Sprite *sprite = &gSprites[objectEvent->spriteId];
     u32 i = FindObjectEventPaletteIndexByTag(graphicsInfo->paletteTag);
-    if (i != 0xFF)
+    //JTP
+    if (graphicsInfo->paletteTag == OBJ_EVENT_PAL_TAG_DYNAMIC)
+    {
+        sprite->inUse = FALSE;
+        FieldEffectFreePaletteIfUnused(sprite->oam.paletteNum);
+        sprite->inUse = TRUE;
+        sprite->oam.paletteNum = LoadDynamicFollowerPalette(OW_SPECIES(objectEvent), OW_SHINY(objectEvent), OW_FEMALE(objectEvent));
+    }
+    else if (i != 0xFF)
+    {
         UpdateSpritePalette(&sObjectEventSpritePalettes[i], sprite);
-
+    }
+    //JTP End
     // If frame size changes, we need to reallocate tiles.
     if (OW_LARGE_OW_SUPPORT && !OW_GFX_COMPRESS && graphicsInfo->images->size != sprite->images->size)
         ReallocSpriteTiles(sprite, graphicsInfo->images->size);
@@ -7031,7 +7041,7 @@ static void ObjectEventSetSingleMovement(struct ObjectEvent *objectEvent, struct
     sprite->sActionFuncId = 0;
 }
 
-static void FaceDirection(struct ObjectEvent *objectEvent, struct Sprite *sprite, enum Direction direction)
+void FaceDirection(struct ObjectEvent *objectEvent, struct Sprite *sprite, enum Direction direction)
 {
     SetObjectEventDirection(objectEvent, direction);
     ShiftStillObjectEventCoords(objectEvent);
@@ -7093,8 +7103,31 @@ static void InitMovementNormal(struct ObjectEvent *objectEvent, struct Sprite *s
     SetStepAnimHandleAlternation(objectEvent, sprite, functions[speed](objectEvent->facingDirection));
 }
 
+//JTP
+static bool32 HasRunningAnimation(u16 graphicsId)
+{
+    switch (graphicsId)
+    {
+        case OBJ_EVENT_GFX_RED_NORMAL:
+        case OBJ_EVENT_GFX_BRENDAN_NORMAL:
+        case OBJ_EVENT_GFX_GREEN_NORMAL:
+        case OBJ_EVENT_GFX_MAY_NORMAL:
+            return TRUE;
+        default:
+            return FALSE;
+    }
+}
+//JTP end
+
 static void StartRunningAnim(struct ObjectEvent *objectEvent, struct Sprite *sprite, enum Direction direction)
 {
+    //JTP start
+    if (!HasRunningAnimation(objectEvent->graphicsId))
+    {
+        InitMovementNormal(objectEvent, sprite, direction, MOVE_SPEED_FAST_1);
+        return;
+    }
+    //JTP end
     InitNpcForMovement(objectEvent, sprite, direction, MOVE_SPEED_FAST_1);
     SetStepAnimHandleAlternation(objectEvent, sprite, GetRunningDirectionAnimNum(objectEvent->facingDirection));
 }
@@ -11516,6 +11549,13 @@ void GetDaycareGraphics(struct ScriptContext *ctx)
 // running slow
 static void StartSlowRunningAnim(struct ObjectEvent *objectEvent, struct Sprite *sprite, enum Direction direction)
 {
+    //JTP
+    if (!HasRunningAnimation(objectEvent->graphicsId))
+    {
+        InitWalkSlow(objectEvent, sprite, direction);
+        return;
+    }
+    //JTP end
     InitNpcForWalkSlow(objectEvent, sprite, direction);
     SetStepAnimHandleAlternation(objectEvent, sprite, GetRunningDirectionAnimNum(objectEvent->facingDirection));
 }

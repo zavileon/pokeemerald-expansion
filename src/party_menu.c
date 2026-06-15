@@ -8295,7 +8295,7 @@ void IsLastMonThatKnowsSurf(void)
 
 static bool32 IsMonNotFullyHealed(void)
 {
-    struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][gPartyMenu.slotId];
     u16 currentHP = GetMonData(mon,MON_DATA_HP);
     u16 maxHP = GetMonData(mon,MON_DATA_MAX_HP);
     u32 status = GetMonData(mon,MON_DATA_STATUS);
@@ -8327,7 +8327,7 @@ static bool32 IsMonNotFullyHealed(void)
 
 void HealMonFromSlotId(void)
 {
-    struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][gPartyMenu.slotId];
     u32 j = 0, ppBonuses = 0;
     u8 arg[4] = {0,0,0,0};
 
@@ -8386,7 +8386,7 @@ void InitPartyMenuForPokevialFromField(u8 taskId)
 
 void UsePokevial(u8 taskId)
 {
-    struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][gPartyMenu.slotId];
     u16 hp = 0, maxHP = 0;
 
     if (GetMonData(mon, MON_DATA_SPECIES) == SPECIES_NONE)
