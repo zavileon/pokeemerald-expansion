@@ -50,6 +50,17 @@ void DisplayDadsAdviceCannotUseItemMessage(u8 taskId, bool8 isUsingRegisteredKey
 void ItemUseOutOfBattle_PokeFlute(u8 taskId);
 void ItemUseOutOfBattle_TownMap(u8 taskId);
 bool8 ItemfinderCheckForHiddenItems(const struct MapEvents *, u8);
+
+//Pokevial
+void ItemUseOutOfBattle_Pokevial(u8 taskId);
+void UsePokevialFieldYes(u8 taskId);
+void Task_UsePokevialFieldYes(u8 taskId);
+void UsePokevialFieldNo(u8 taskId);
+void UsePokevialYesNo(u8 taskId);
+void UsePokevialYes(u8 taskId);
+void PokevialPrintPartyHealed(bool32 isPlayerUsingRegisteredKeyItem, u8 taskId);
+// End Pokevial
+
 enum Direction GetDirectionToHiddenItem(s16, s16);
 
 enum {

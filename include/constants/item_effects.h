@@ -35,6 +35,9 @@
 #define ITEM4_PP_UP             0x20
 #define ITEM4_REVIVE            0x40
 #define ITEM4_EVO_STONE         0x80
+//Pokevial - shoutout Kaya
+#define ITEM0_POKEVIAL          0xC0
+// End Pokevial
 
 // field 5 masks
 #define ITEM5_EV_DEF            0x1
@@ -93,6 +96,9 @@ enum ItemEffectType
     ITEM_EFFECT_PP_UP,
     ITEM_EFFECT_PP_MAX,
     ITEM_EFFECT_HEAL_PP,
+    //Pokevial - shoutout Kaya
+    ITEM_EFFECT_POKEVIAL,
+    // End Pokevial
     ITEM_EFFECT_NONE
 };
 

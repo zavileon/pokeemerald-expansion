@@ -145,6 +145,12 @@ extern const u8 gText_ClockHasBeenReset[];
 extern const u8 gText_SaveCompleted[];
 extern const u8 gText_SaveFailed[];
 
+// pokevial
+extern const u8 gText_PokevialHasDoses[];
+extern const u8 gText_PokevialIsEmpty[];
+extern const u8 gText_YourPkmnWereRestored[];
+// end pokevial
+
 // menu texts
 extern const u8 gText_MenuPokedex[];
 extern const u8 gText_MenuPokemon[];

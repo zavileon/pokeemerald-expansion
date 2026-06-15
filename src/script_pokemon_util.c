@@ -20,6 +20,9 @@
 #include "pokedex.h"
 #include "pokemon.h"
 #include "pokemon_storage_system.h"
+//Pokevial - shoutout Kaya
+#include "pokevial.h"
+// End Pokevial
 #include "random.h"
 #include "random_mon_generation.h"
 #include "script.h"
@@ -38,6 +41,10 @@ static void HealPlayerBoxes(void);
 void HealPlayerParty(void)
 {
     u32 i;
+    //Pokevial - shoutout Kaya
+        if (I_ENABLE_POKEVIAL)
+        PokevialRefill();
+    // End Pokevial
     for (i = 0; i < gPartiesCount[B_TRAINER_PLAYER]; i++)
         HealPokemon(&gParties[B_TRAINER_PLAYER][i]);
     if (OW_PC_HEAL >= GEN_8)

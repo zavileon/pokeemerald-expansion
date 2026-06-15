@@ -6,6 +6,9 @@
 #include "item_icon.h"
 #include "malloc.h"
 #include "move.h"
+//Pokevial - shoutout Kaya
+#include "pokevial.h"
+// End Pokevial
 #include "sprite.h"
 #include "constants/items.h"
 

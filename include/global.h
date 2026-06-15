@@ -4,6 +4,9 @@
 #include <string.h>
 #include <limits.h>
 #include "config/general.h" // we need to define config before gba headers as print stuff needs the functions nulled before defines.
+//Pokevial - shoutout Kaya
+#include "config/item.h"
+// End Pokevial
 #include "gba/gba.h"
 #include "assertf.h"
 #include "gametypes.h"

@@ -43,6 +43,9 @@
 #include "party_menu.h"
 #include "pokedex.h"
 #include "pokemon_storage_system.h"
+//Pokevial - shoutout Kaya
+#include "pokevial.h"
+// End Pokevial
 #include "random.h"
 #include "overworld.h"
 #include "rotating_tile_puzzle.h"
