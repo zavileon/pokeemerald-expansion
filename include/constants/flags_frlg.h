@@ -2517,7 +2517,7 @@
 
 #define FLAG_SYS_WEATHER_CTRL                       0
 #define FLAG_SYS_CYCLING_ROAD                       0
-#define FLAG_UNUSED_0x88E                           0 // Unused Flag
+#define FLAG_POKEMONPCMENU                          0 // PSS in Start Menu
 #define FLAG_UNUSED_0x88F                           0 // Unused Flag
 #define FLAG_SYS_TV_HOME                            0
 #define FLAG_SYS_TV_WATCH                           0
