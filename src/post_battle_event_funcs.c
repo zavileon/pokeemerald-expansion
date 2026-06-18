@@ -1,4 +1,5 @@
 #include "global.h"
+#include "item.h"
 #include "main.h"
 #include "credits.h"
 #include "event_data.h"
@@ -9,6 +10,7 @@
 #include "script_pokemon_util.h"
 #include "tv.h"
 #include "constants/heal_locations.h"
+#include "constants/items.h"
 
 int GameClear(void)
 {
@@ -80,6 +82,16 @@ int GameClear(void)
         {
             TryPutSpotTheCutiesOnAir(&gParties[B_TRAINER_PLAYER][ribbonCounts[0].partyIndex], MON_DATA_CHAMPION_RIBBON);
         }
+    }
+
+    if ( !(CheckBagHasItem(ITEM_AURORA_TICKET, 1) << 24) )
+    {
+        AddBagItem(ITEM_AURORA_TICKET, 1);
+        FlagSet(FLAG_ENABLE_SHIP_BIRTH_ISLAND);
+        FlagSet(FLAG_RECEIVED_AURORA_TICKET);
+        AddBagItem(ITEM_MYSTIC_TICKET, 1);
+        FlagSet(FLAG_ENABLE_SHIP_NAVEL_ROCK);
+        FlagSet(FLAG_RECEIVED_MYSTIC_TICKET);
     }
 
     SetMainCallback2(CB2_DoHallOfFameScreen);

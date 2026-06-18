@@ -1703,6 +1703,30 @@ const u32 gPartyMenuPokeball_Gfx[] = INCGFX_U32("graphics/party_menu/pokeball.pn
 const u32 gPartyMenuPokeballSmall_Gfx[] = INCGFX_U32("graphics/party_menu/pokeball_small.png", ".4bpp.smol"); //unused
 const u16 gPartyMenuPokeball_Pal[] = INCGFX_U16("graphics/party_menu/pokeball.png", ".gbapal");
 
+//other Pokeballs
+const u32 gPartyMenuGreatball_Gfx[] = INCBIN_U32("graphics/party_menu/greatball.4bpp.lz");
+const u16 gPartyMenuGreatball_Pal[] = INCBIN_U32("graphics/party_menu/greatball.gbapal.lz");
+const u32 gPartyMenuUltraball_Gfx[] = INCBIN_U32("graphics/party_menu/ultraball.4bpp.lz");
+const u16 gPartyMenuUltraball_Pal[] = INCBIN_U32("graphics/party_menu/ultraball.gbapal.lz");
+const u32 gPartyMenuMasterball_Gfx[] = INCBIN_U32("graphics/party_menu/masterball.4bpp.lz");
+const u16 gPartyMenuMasterball_Pal[] = INCBIN_U32("graphics/party_menu/masterball.gbapal.lz");
+const u32 gPartyMenuSafariball_Gfx[] = INCBIN_U32("graphics/party_menu/safariball.4bpp.lz");
+const u16 gPartyMenuSafariball_Pal[] = INCBIN_U32("graphics/party_menu/safariball.gbapal.lz");
+const u32 gPartyMenuNetball_Gfx[] = INCBIN_U32("graphics/party_menu/netball.4bpp.lz");
+const u16 gPartyMenuNetball_Pal[] = INCBIN_U32("graphics/party_menu/netball.gbapal.lz");
+const u32 gPartyMenuDiveball_Gfx[] = INCBIN_U32("graphics/party_menu/diveball.4bpp.lz");
+const u16 gPartyMenuDiveball_Pal[] = INCBIN_U32("graphics/party_menu/diveball.gbapal.lz");
+const u32 gPartyMenuNestball_Gfx[] = INCBIN_U32("graphics/party_menu/nestball.4bpp.lz");
+const u16 gPartyMenuNestball_Pal[] = INCBIN_U32("graphics/party_menu/nestball.gbapal.lz");
+const u32 gPartyMenuRepeatball_Gfx[] = INCBIN_U32("graphics/party_menu/repeatball.4bpp.lz");
+const u16 gPartyMenuRepeatball_Pal[] = INCBIN_U32("graphics/party_menu/repeatball.gbapal.lz");
+const u32 gPartyMenuTimerball_Gfx[] = INCBIN_U32("graphics/party_menu/timerball.4bpp.lz");
+const u16 gPartyMenuTimerball_Pal[] = INCBIN_U32("graphics/party_menu/timerball.gbapal.lz");
+const u32 gPartyMenuLuxuryball_Gfx[] = INCBIN_U32("graphics/party_menu/luxuryball.4bpp.lz");
+const u16 gPartyMenuLuxuryball_Pal[] = INCBIN_U32("graphics/party_menu/luxuryball.gbapal.lz");
+const u32 gPartyMenuPremierball_Gfx[] = INCBIN_U32("graphics/party_menu/premierball.4bpp.lz");
+const u16 gPartyMenuPremierball_Pal[] = INCBIN_U32("graphics/party_menu/premierball.gbapal.lz");
+
 const u32 gStatusGfx_Icons[] = INCGFX_U32("graphics/interface/status_icons.png", ".4bpp.smol");
 const u16 gStatusPal_Icons[] = INCGFX_U16("graphics/interface/status_icons.png", ".gbapal");
 

@@ -3299,6 +3299,30 @@ extern const u16 gStatusPal_Icons[];
 extern const u16 gPartyMenuPokeball_Pal[];
 extern const u16 gStatusPal_Icons[];
 
+//Other Pokeballs
+extern const u32 gPartyMenuGreatball_Gfx[];
+extern const u32 gPartyMenuGreatball_Pal[];
+extern const u32 gPartyMenuUltraball_Gfx[];
+extern const u32 gPartyMenuUltraball_Pal[];
+extern const u32 gPartyMenuMasterball_Gfx[]; 
+extern const u32 gPartyMenuMasterball_Pal[];
+extern const u32 gPartyMenuSafariball_Gfx[];
+extern const u32 gPartyMenuSafariball_Pal[];
+extern const u32 gPartyMenuNetball_Gfx[];
+extern const u32 gPartyMenuNetball_Pal[];
+extern const u32 gPartyMenuDiveball_Gfx[];
+extern const u32 gPartyMenuDiveball_Pal[];
+extern const u32 gPartyMenuNestball_Gfx[];
+extern const u32 gPartyMenuNestball_Pal[];
+extern const u32 gPartyMenuRepeatball_Gfx[];
+extern const u32 gPartyMenuRepeatball_Pal[];
+extern const u32 gPartyMenuTimerball_Gfx[];
+extern const u32 gPartyMenuTimerball_Pal[];
+extern const u32 gPartyMenuLuxuryball_Gfx[];
+extern const u32 gPartyMenuLuxuryball_Pal[];
+extern const u32 gPartyMenuPremierball_Gfx[];
+extern const u32 gPartyMenuPremierball_Pal[];
+
 // Roulette
 extern const u32 gRouletteMenu_Gfx[];
 extern const u32 gRouletteWheel_Gfx[];
