@@ -58,6 +58,7 @@
 #include "constants/battle_move_effects.h"
 #include "constants/battle_string_ids.h"
 #include "constants/battle_partner.h"
+#include "constants/flags_frlg.h"
 #include "constants/items.h"
 #include "constants/item_effects.h"
 #include "constants/moves.h"
@@ -10040,6 +10041,9 @@ static void Cmd_handleballthrow(void)
         enum PokeBall ballId = ItemIdToBallId(gLastUsedItem);
         if (gBattleResults.catchAttempts[ballId] < 255)
             gBattleResults.catchAttempts[ballId]++;
+        
+         if (FlagGet(FLAG_EZ_CATCH))
+            odds = 255;
 
         gBattleSpritesDataPtr->animationData->isCriticalCapture = FALSE;
         gBattleSpritesDataPtr->animationData->criticalCaptureSuccess = FALSE;

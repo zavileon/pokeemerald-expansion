@@ -62,6 +62,7 @@
 #include "constants/decorations.h"
 #include "constants/event_objects.h"
 #include "constants/event_object_movement.h"
+#include "constants/flags_frlg.h"
 #include "constants/field_effects.h"
 #include "constants/field_specials.h"
 #include "constants/items.h"
@@ -78,6 +79,7 @@
 #include "palette.h"
 #include "battle_util.h"
 #include "naming_screen.h"
+#include "pokedex.h"
 #include "chooseboxmon.h"
 
 #define TAG_ITEM_ICON 5500
@@ -4592,6 +4594,59 @@ void SetHiddenNature(void)
     u32 hiddenNature = gSpecialVar_Result;
     SetMonData(&gParties[B_TRAINER_PLAYER][gSpecialVar_0x8004], MON_DATA_HIDDEN_NATURE, &hiddenNature);
     CalculateMonStats(&gParties[B_TRAINER_PLAYER][gSpecialVar_0x8004]);
+}
+
+void EnterCheatCode(void)
+{
+    DoNamingScreen(NAMING_SCREEN_CHEAT_CODE, gStringVar2, 0, 0, 0, CB2_ReturnToFieldContinueScript);
+}
+
+void GetCheatCodeFeedback(void)
+{
+    static const u8 sText_CheatCodeDexAll[] = _("DexAll"); // Mark entire Pokedex as seen
+    static const u8 sText_CheatCodeCaughtEmAll[] = _("CaughtAll"); // Mark entire Pokedex as caught
+    static const u8 sText_CheatCodeBestBall[] = _("EZCatch"); // 100% catch rate with all balls
+    static const u8 sText_CheatCodeMega[] = _("Mega"); // give all mega stones
+
+    // Mark entire Pokedex as seen
+    if (!StringCompare(gStringVar2, sText_CheatCodeDexAll))
+    {
+        if (FlagGet(FLAG_DEXALL))
+            FlagClear(FLAG_DEXALL);
+        else
+            FlagSet(FLAG_DEXALL);
+        gSpecialVar_Result = 1;
+    }
+
+    // Mark entire Pokedex as caught
+    else if (!StringCompare(gStringVar2, sText_CheatCodeCaughtEmAll))
+    {
+        u32 i;
+        for (i = 0; i < NATIONAL_DEX_COUNT; i++)
+        {
+            GetSetPokedexFlag(i + 1, FLAG_SET_SEEN);
+            GetSetPokedexFlag(i + 1, FLAG_SET_CAUGHT);
+        }
+        gSpecialVar_Result = 2;
+    }
+
+    // 100% catch rate with all balls
+    else if (!StringCompare(gStringVar2, sText_CheatCodeBestBall))
+    {
+        if (FlagGet(FLAG_EZ_CATCH))
+            FlagClear(FLAG_EZ_CATCH);
+        else
+            FlagSet(FLAG_EZ_CATCH);
+        gSpecialVar_Result = 3;
+    }
+
+    // give all mega stones
+    else if (!StringCompare(gStringVar2, sText_CheatCodeMega))
+        gSpecialVar_Result = 4;
+
+    // Illegal cheat code
+    else
+        gSpecialVar_Result = 0;
 }
 
 void SetAbility(void)

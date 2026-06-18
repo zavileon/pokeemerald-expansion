@@ -1376,6 +1376,7 @@ static void NamingScreen_CreatePCIcon(void);
 static void NamingScreen_CreateMonIcon(void);
 static void NamingScreen_CreateWaldaDadIcon(void);
 static void NamingScreen_CreateCodeIcon(void);
+static void NamingScreen_CreateCheatCodeIcon(void);
 static void NamingScreen_CreateRivalIcon(void);
 
 static void (*const sIconFunctions[])(void) =
@@ -1386,6 +1387,7 @@ static void (*const sIconFunctions[])(void) =
     NamingScreen_CreateMonIcon,
     NamingScreen_CreateWaldaDadIcon,
     NamingScreen_CreateCodeIcon,
+    NamingScreen_CreateCheatCodeIcon,
     NamingScreen_CreateRivalIcon,
 };
 
@@ -1441,6 +1443,13 @@ static void NamingScreen_CreateCodeIcon(void)
 {
     u8 spriteId;
     spriteId = CreateObjectGraphicsSprite(OBJ_EVENT_GFX_MYSTERY_GIFT_MAN, SpriteCallbackDummy, 56, 37, 0);
+    gSprites[spriteId].oam.priority = 3;
+}
+
+static void NamingScreen_CreateCheatCodeIcon(void)
+{
+    u8 spriteId;
+    spriteId = CreateObjectGraphicsSprite(OBJ_EVENT_GFX_GAMEBOY_KID, SpriteCallbackDummy, 56, 37, 0);
     gSprites[spriteId].oam.priority = 3;
 }
 
@@ -1795,7 +1804,8 @@ static void (*const sDrawTextEntryBoxFuncs[])(void) =
     [NAMING_SCREEN_NICKNAME]   = DrawMonTextEntryBox,
     [NAMING_SCREEN_WALDA]      = DrawNormalTextEntryBox,
     [NAMING_SCREEN_CODE]       = DrawNormalTextEntryBox,
-    [NAMING_SCREEN_RIVAL]      = DrawNormalTextEntryBox
+    [NAMING_SCREEN_RIVAL]      = DrawNormalTextEntryBox,
+    [NAMING_SCREEN_CHEAT_CODE] = DrawNormalTextEntryBox
 };
 
 static void DrawTextEntryBox(void)
@@ -2191,6 +2201,18 @@ static const struct NamingScreenTemplate sWaldaWordsScreenTemplate =
     .title = COMPOUND_STRING("Tell him the words."),
 };
 
+static const u8 sText_CheatCode[] = _("Enter cheat code:");
+static const struct NamingScreenTemplate sCheatCodeScreenTemplate = 
+{
+    .copyExistingString = FALSE,
+    .maxChars = WALDA_PHRASE_LENGTH,
+    .iconFunction = 5,
+    .addGenderIcon = FALSE,
+    .initialPage = KBPAGE_LETTERS_UPPER,
+    .unused = 35,
+    .title = COMPOUND_STRING("Enter code:"),
+};
+
 static const struct NamingScreenTemplate sCodeScreenTemplate =
 {
     .copyExistingString = FALSE,
@@ -2221,6 +2243,7 @@ static const struct NamingScreenTemplate *const sNamingScreenTemplates[] =
     [NAMING_SCREEN_WALDA]      = &sWaldaWordsScreenTemplate,
     [NAMING_SCREEN_CODE]       = &sCodeScreenTemplate,
     [NAMING_SCREEN_RIVAL]      = &sRivalNamingScreenTemplate,
+    [NAMING_SCREEN_CHEAT_CODE] = &sCodeScreenTemplate
 };
 
 static const struct OamData sOam_8x8 =
