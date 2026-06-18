@@ -837,7 +837,7 @@ void ZeroEnemyPartyMons(void)
 
 void CreateRandomMon(struct Pokemon *mon, enum Species species, u8 level)
 {
-    CreateRandomMonWithIVs(mon, species, level, USE_RANDOM_IVS);
+    CreateRandomMonWithIVs(mon, species, level, MAX_PER_STAT_IVS);
 }
 
 void CreateRandomMonWithIVs(struct Pokemon *mon, enum Species species, u8 level, u8 fixedIv)
@@ -1279,7 +1279,7 @@ static void CreateEventMon(struct Pokemon *mon, enum Species species, u8 level, 
 {
     bool32 isModernFatefulEncounter = TRUE;
 
-    CreateMonWithIVs(mon, species, level, personality, otId, USE_RANDOM_IVS);
+    CreateMonWithIVs(mon, species, level, personality, otId, MAX_PER_STAT_IVS);
     GiveMonInitialMoveset(mon);
     SetMonData(mon, MON_DATA_MODERN_FATEFUL_ENCOUNTER, &isModernFatefulEncounter);
     CalculateMonStats(mon);
