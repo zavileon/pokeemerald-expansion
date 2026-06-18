@@ -1056,6 +1056,8 @@ enum __attribute__((packed)) Item
     ITEM_POKEVIAL = 874,
     //Pokevial end
 
+    ITEM_INFINITE_CANDY = 875,
+
     ITEMS_COUNT,
     ITEM_FIELD_ARROW = ITEMS_COUNT,
 };
